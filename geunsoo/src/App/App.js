@@ -1,22 +1,38 @@
+import { useState } from "react";
 import "./App.css";
-import Component from "../components/component";
-import { createContext } from "react";
-const data = createContext();
-// 1. createContext로 전역으로 관리할 데이터의 대장 만들기
-// 2. 데이터를 사용할 컴포넌트를 1에서 만든 변수의 이름. provider로 감싸기
-// 3. <변수의 이름.provider value={전송할 데이터}><component></component> </qustndml dlfma.provider>로 데이터 남겨두기
-// 4. 전송할 데이터가 2개 이상이라면 value={{데이터 1. 데이터 2}}객체로 나눈다
-// 5. 1번에서 만든 데이터의 대장을 export 모듈로 내보낸다.
+
 function App() {
-  let test = "안녕";
-  let hello = "기모찌";
-  return (
-    <div>
-      <data.Provider value={{ hello, test }}>
-        <Component test={test}></Component>
-      </data.Provider>
+  const [number, setNumber] = useState(0);
+  const [data, setData] = useState([1, 2, 3, 4, 5]);
+  const [key, setKey] = useState(6);
+  console.log(data);
+
+  const click = test => {
+    setNumber(number + test);
+  };
+  const add = () => {
+    let newList = data.concat(key);
+    console.log(newList);
+    setData(newList);
+    setKey(key + 1);
+  };
+  const remove = number => {
+    let filterList = data.filter(value => value !== number);
+    setData(filterList);
+  };
+  let list = data.map(value => (
+    <div key={value} onClick={() => remove(value)}>
+      {value}
     </div>
+  ));
+  return (
+    <>
+      <input></input>
+      <div>{number}</div>
+      <button onClick={() => click(4)}>버튼</button>
+      <button onClick={add}>추가</button>
+      {list}
+    </>
   );
 }
-
-export { App, data };
+export { App };
