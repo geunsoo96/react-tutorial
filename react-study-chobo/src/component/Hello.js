@@ -1,14 +1,31 @@
-import World from "./World";
-
 export default function Hello() {
+  function showName() {
+    console.log("mike");
+  }
+  function showAge(age) {
+    console.log(age);
+  }
+  function showText(txt) {
+    console.log(txt);
+  }
   return (
     <div>
-      <p>Hello</p>
-      <World />
-      <World />
-      <World />
-      <World />
-      <World />
+      <h1>Hello</h1>
+      <button onClick={showName}>Show name</button>
+      <button
+        onClick={() => {
+          showAge(30);
+        }}
+      >
+        Show age
+      </button>
+      <input
+        type="text"
+        onChange={(e) => {
+          const txt = e.target.value;
+          showText(txt);
+        }}
+      ></input>
     </div>
   );
 }
