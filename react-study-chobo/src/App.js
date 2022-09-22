@@ -5,9 +5,9 @@ function App() {
   return (
     <div className="App">
       <Welcome />
-      <Hello />
-      <Hello />
-      <Hello />
+      <Hello age={10} />
+      <Hello age={10} />
+      <Hello age={10} />
     </div>
   );
 }

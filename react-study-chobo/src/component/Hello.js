@@ -1,31 +1,22 @@
-export default function Hello() {
-  function showName() {
-    console.log("mike");
-  }
-  function showAge(age) {
-    console.log(age);
-  }
-  function showText(txt) {
-    console.log(txt);
-  }
+import { useState } from "react";
+
+export default function Hello(props) {
+  const [name, setName] = useState("Mike");
+  const [age, setAge] = useState(props.age);
+  const msg = age > 19 ? "다 컸구나" : "우유 더 먹고 오렴";
   return (
     <div>
-      <h1>Hello</h1>
-      <button onClick={showName}>Show name</button>
+      <h1 id="name">
+        {name}({age} : {msg})
+      </h1>
       <button
         onClick={() => {
-          showAge(30);
+          setName(name === "Mike" ? "Jane" : "Mike");
+          setAge(age + 1);
         }}
       >
-        Show age
+        Plus
       </button>
-      <input
-        type="text"
-        onChange={(e) => {
-          const txt = e.target.value;
-          showText(txt);
-        }}
-      ></input>
     </div>
   );
 }
